@@ -39,6 +39,9 @@ const PaymentList = [
 const PaymentScreen = () => {
   const [paymentMode, setPaymentMode] = useState('Credit Card');
   const CartPrice = useStore((state: any) => state.CartPrice);
+
+  console.log("i m here");
+  
   return (
     <View style={styles.screenContainer}>
       <StatusBar backgroundColor={COLORS.primaryBlackHex} />
