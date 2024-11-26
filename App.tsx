@@ -4,6 +4,7 @@ import RootNavigation from './src/navigation/RootNavigation';
 
 function App(): React.JSX.Element {
   return (
+    
     <View style={{flex:1}}>
      <RootNavigation/>
     </View>

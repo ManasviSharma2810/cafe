@@ -9,6 +9,7 @@ import PaymentScreen from '../screens/payment';
 import { Screen } from 'react-native-screens';
 import TabNavigator from './TabNavigator';
 import CartScreen from '../screens/cart';
+import OrderHistoryScreen from '../screens/order_history';
 const Stack = createNativeStackNavigator();
 const RootNavigation = () => {
   return (
@@ -19,12 +20,13 @@ const RootNavigation = () => {
         headerShown:false,
       }}> 
      
-        <Stack.Screen  name ="Splash" component={Splash}/>
+        <Stack.Screen name ="Splash" component={Splash}/>
         <Stack.Screen name ='TabNavigator' component={TabNavigator}options={{animation:'slide_from_bottom'}}/>
         <Stack.Screen name ="SignUp" component={SignUP}/>
         <Stack.Screen name ='DetailScreen' component={DetailScreen} options={{animation:'slide_from_bottom'}}/>
         <Stack.Screen name='PaymentScreen' component={PaymentScreen}options={{animation:'slide_from_bottom'}}/>
         <Stack.Screen name='Cart' component={CartScreen}options={{animation:'slide_from_bottom'}}/>
+        <Stack.Screen name='History' component={OrderHistoryScreen}options={{animation:'slide_from_bottom'}}/>
 
       </Stack.Navigator>
     </NavigationContainer>

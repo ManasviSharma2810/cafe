@@ -1,6 +1,10 @@
 import React from 'react'
-import {View,Text} from 'react-native'
+import {View,Text,StyleSheet} from 'react-native'
+import { useStore } from '../../store/store'
 const OrderHistoryScreen = () => {
+  const OrderHistoryList = useStore((state:any)=>state.OrderHistoryList);
+  console.log('History- ',OrderHistoryList.length);
+  
   return (
     <View>
         <Text>
@@ -9,5 +13,7 @@ const OrderHistoryScreen = () => {
     </View>
   )
 }
+const styles = StyleSheet.create({
 
+})
 export default OrderHistoryScreen

@@ -121,7 +121,6 @@ const HomeScreen = ({navigation}: any) => {
   return (
     <View style={styles.screenContainer}>
       <StatusBar backgroundColor={COLORS.primaryBlackHex} />
-      {/* appHeader */}
       <HeaderBar />
       <ScrollView
         showsVerticalScrollIndicator={false}

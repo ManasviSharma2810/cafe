@@ -97,10 +97,10 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZE.size_16,
     fontFamily: FONTFAMILY.poppins_semibold,
   },
-  paymentImage:{
-    height:50,
-    width:50,
-    padding:10
-  }
+  paymentImage: {
+    height: 50,
+    width: 50,
+    padding: 10,
+  },
 });
 export default PaymentMethod;

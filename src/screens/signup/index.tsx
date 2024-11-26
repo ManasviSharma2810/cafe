@@ -8,7 +8,7 @@ import {
   Image,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-// import Icon from 'react-native-vector-icons/FontAwesome';
+
 import {
   BORDERRADIUS,
   COLORS,
@@ -16,20 +16,36 @@ import {
   FONTSIZE,
   SPACING,
 } from '../../theme/theme';
-// import {icons} from '../../assets/icons';
-import CustomIcon from '../../components/CustomIcon';
+import {icons} from '../../assets/icons';
 
 const SignUP = ({navigation}: any) => {
-  // const navigation = useNavigation();
-
   return (
-    <LinearGradient colors={[COLORS.primaryBlackHex,COLORS.primaryOrangeHex]} style={styles.container}>
+    <LinearGradient
+      colors={[COLORS.primaryBlackHex,COLORS.primaryOrangeHex]}
+      style={styles.container}>
       <View style={styles.header}>
-        {/* <Image style={styles.iconStyleCup} source={icons.cup} /> */}
+        {/* <Image style={styles.cup2style} source={icons.cup2}/> */}
+        <Text  style={styles.title}>Welcome {'\n'} Back!</Text>
       </View>
 
-   
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Email"
+          placeholderTextColor={COLORS.primaryLightGreyHex}
+          keyboardType="email-address"
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Password"
+          placeholderTextColor={COLORS.primaryLightGreyHex}
+          secureTextEntry
+        />
+      </View>
 
+      {/* Sign Up Button */}
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
@@ -38,8 +54,12 @@ const SignUP = ({navigation}: any) => {
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
+      {/* Forgot Password */}
+      <TouchableOpacity style={styles.createStyle}>
+        <Text style={styles.forgotText}>Create an Account</Text>
+      </TouchableOpacity>
       <TouchableOpacity>
-        <Text style={styles.forgotText}>Forgot Password?</Text>
+        <Text style={styles.forgotText}>Forgot your password ?</Text>
       </TouchableOpacity>
     </LinearGradient>
   );
@@ -51,66 +71,72 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   header: {
-    alignItems: 'center',
-    height: '10%',
+    left: 20,
+    marginBottom: SPACING.space_20,
   },
   title: {
-    color: COLORS.primaryWhiteHex,
-    fontSize: 32,
-    fontWeight: 'bold',
+    color: COLORS.primaryDarkGreyHex,
+    fontSize: 40,
+    fontFamily: FONTFAMILY.poppins_semibold,
   },
   subtitle: {
     color: COLORS.primaryOrangeHex,
-    fontSize: FONTSIZE.size_28,
+    fontSize: FONTSIZE.size_20,
     fontFamily: FONTFAMILY.poppins_light,
     textAlign: 'center',
-    // marginBottom:SPACING.space_10
+    marginTop: SPACING.space_10,
   },
   inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
     backgroundColor: COLORS.primaryDarkGreyHex,
     borderRadius: BORDERRADIUS.radius_15,
-    paddingHorizontal: SPACING.space_18,
-    marginVertical: 10,
+    padding: SPACING.space_18,
+    marginVertical: SPACING.space_10,
     marginHorizontal: SPACING.space_15,
     height: 50,
   },
-  iconStyle: {
-    marginRight: 10,
-  },
   textInput: {
-    flex: 1,
     color: COLORS.primaryWhiteHex,
     fontSize: 16,
+    fontFamily: FONTFAMILY.poppins_regular,
   },
   button: {
     backgroundColor: COLORS.primaryOrangeHex,
-    borderRadius: 8,
+    borderRadius: BORDERRADIUS.radius_15 * 2,
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: SPACING.space_20,
     marginHorizontal: SPACING.space_15,
   },
   buttonText: {
     color: COLORS.primaryBlackHex,
-    fontSize: 18,
+    fontSize: FONTSIZE.size_18,
     fontWeight: 'bold',
   },
   forgotText: {
-    color: COLORS.primaryWhiteHex,
+    color: COLORS.primaryBlackHex,
     textAlign: 'center',
-    marginTop: 15,
-    fontSize: 14,
+    padding: 5,
+    // marginTop: SPACING.space_15,
+    fontSize: FONTSIZE.size_14,
+    fontFamily: FONTFAMILY.poppins_medium,
   },
-  iconStyleCup: {
-    height: '60%',
-    width: '50%',
-    resizeMode: 'contain',
-
-    marginVertical: SPACING.space_10,
+  createStyle: {
+    margin: 18,
+    borderColor:COLORS.primaryBlackHex,
+    borderWidth: 1,
+    // backgroundColor: 'red',
+    borderRadius: BORDERRADIUS.radius_15 * 2,
+    padding: 10,
   },
+  cup2style:{
+    left:"15%",
+    marginBottom:30,
+    // height:"20%",
+    // width:"20%"
+  }
+  
+  
 });
 
 export default SignUP;
