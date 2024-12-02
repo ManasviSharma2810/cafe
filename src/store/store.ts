@@ -145,6 +145,13 @@ export const useStore = create(
             }
           }),
         ),
+        clearOrderHistory: () =>
+          set(
+            produce((state) => {
+              state.OrderHistoryList = []; // Clears all data from the order history
+            }),
+          ),
+        
       addToOrderHistoryListFromCart: () =>
         set(
           produce(state => {

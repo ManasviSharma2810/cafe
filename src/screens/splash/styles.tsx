@@ -5,6 +5,7 @@ import { COLORS, FONTFAMILY, FONTSIZE } from "../../theme/theme";
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor:COLORS.primaryOrangeHex
       },
       content: {
         flex: 1,
@@ -17,15 +18,19 @@ export const styles = StyleSheet.create({
         resizeMode: 'contain',
       },
       textStyle: {
-        marginTop: 10,
+        // marginTop: 1,
         color:myColor.primary,
         fontStyle: 'italic',
       },
       subtitle: {
         color: COLORS.primaryBlackHex,
         fontSize: FONTSIZE.size_28,
-        fontFamily:FONTFAMILY.poppins_light,
-        textAlign:'center'
+        // fontFamily:FONTFAMILY.poppins_medium,
+        textAlign:'center',
+         fontStyle: 'italic'
         // marginBottom:SPACING.space_10
+      },
+      lottieStyle: {
+        height: 150,
       },
 })
