@@ -2,23 +2,19 @@ import React, {useState} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   StatusBar,
   ScrollView,
   TouchableWithoutFeedback,
 } from 'react-native';
 import {useStore} from '../../store/store';
 import {
-  BORDERRADIUS,
   COLORS,
-  FONTFAMILY,
   FONTSIZE,
-  SPACING,
 } from '../../theme/theme';
 import ImageBGComponent from '../../components/ImageBGComponent';
 import {TouchableOpacity} from 'react-native';
 import PaymentFooter from '../../components/PaymentFooter';
-import CartScreen from '../cart';
+import { styles } from './styles';
 const DetailScreen = ({navigation, route}: any) => {
   console.log('route :', route);
   const ItemOfIndex = useStore((state: any) =>
@@ -157,49 +153,5 @@ const DetailScreen = ({navigation, route}: any) => {
     </View>
   );
 };
-const styles = StyleSheet.create({
-  screenContainer: {
-    flex: 1,
-    backgroundColor: COLORS.primaryBlackHex,
-  },
-  scrollViewFlex: {
-    flexGrow: 1,
-    justifyContent: 'space-between',
-  },
-  descriptionText: {
-    color: COLORS.primaryWhiteHex,
-    fontFamily: FONTFAMILY.poppins_semibold,
-    fontSize: FONTSIZE.size_16,
-    marginBottom: SPACING.space_10,
-  },
-  descText: {
-    letterSpacing: 0.5,
-    fontFamily: FONTFAMILY.poppins_regular,
-    fontSize: FONTSIZE.size_14,
-    color: COLORS.primaryWhiteHex,
-    marginBottom: SPACING.space_30,
-  },
-  footerInfoArea: {
-    padding: SPACING.space_20,
-  },
-  sizeOuterContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: SPACING.space_20,
-  },
-  sizeText: {
-    // color: COLORS.primaryWhiteHex,
-    fontFamily: FONTFAMILY.poppins_medium,
-  },
-  sizeBox: {
-    backgroundColor: COLORS.primaryDarkGreyHex,
-    flex: 1,
-    borderRadius: BORDERRADIUS.radius_10,
-    height: SPACING.space_24 * 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 2,
-  },
-});
+
 export default DetailScreen;

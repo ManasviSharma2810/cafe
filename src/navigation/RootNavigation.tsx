@@ -13,6 +13,9 @@ import OrderHistoryScreen from '../screens/order_history';
 import CreateAccount from '../screens/create_acount';
 import HomeScreen from '../screens/home';
 import ForgotPassword from '../screens/forgot';
+import TutorialScreen from '../screens/tutorial';
+import Profile from '../screens/profile';
+import FavoritesScreen from '../screens/favorites';
 const Stack = createNativeStackNavigator();
 const RootNavigation = () => {
   return (
@@ -56,12 +59,27 @@ const RootNavigation = () => {
         />
          <Stack.Screen
           name="Home"
-          component={HomeScreen}
+          component={TabNavigator}
           options={{animation: 'slide_from_bottom'}}
         />
           <Stack.Screen
           name="ForgotPassword"
           component={ForgotPassword}
+          options={{animation: 'slide_from_bottom'}}
+        />
+         <Stack.Screen
+          name="Tutorial"
+          component={TutorialScreen}
+          // options={{animation: 'slide_from_bottom'}}
+        />
+         <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{animation: 'slide_from_bottom'}}
+        />
+         <Stack.Screen
+          name="Fav"
+          component={FavoritesScreen}
           options={{animation: 'slide_from_bottom'}}
         />
       </Stack.Navigator>

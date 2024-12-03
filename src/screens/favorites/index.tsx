@@ -1,8 +1,6 @@
 import React from 'react';
 import {
   View,
-  Text,
-  StyleSheet,
   StatusBar,
   ScrollView,
   TouchableOpacity,
@@ -12,17 +10,22 @@ import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {COLORS} from '../../theme/theme';
 import HeaderBar from '../../components/HeaderBar';
 import EmptyListAnimation from '../../components/EmptyListAnimation';
-import CartItems from '../../components/CartItems';
-import PaymentFooter from '../../components/PaymentFooter';
 import FavoritesItemCard from '../../components/FavoritesItemCard';
+import { styles } from './styles';
 const FavoritesScreen = ({navigation}: any) => {
   const FavoritesList = useStore((state: any) => state.FavoritesList);
-  const tabBarHeight = useBottomTabBarHeight();
+  // const tabBarHeight = useBottomTabBarHeight();
   const addToFavoriteList = useStore((state: any) => state.addToFavoriteList);
   const deleteFromFavorite = useStore((state: any) => state.deleteFromFavorite);
   const ToggleFavorite = (favourite: boolean, type: string, id: string) => {
     favourite ? deleteFromFavorite(type, id) : addToFavoriteList(type, id);
   };
+  let tabBarHeight = 0; 
+  try {
+    tabBarHeight = useBottomTabBarHeight();
+  } catch (error) {
+    console.warn('Screen is not inside a BottomTabNavigator.');
+  }
   return (
     <View style={styles.screenContainer}>
       <StatusBar backgroundColor={COLORS.primaryBlackHex} />
@@ -33,8 +36,6 @@ const FavoritesScreen = ({navigation}: any) => {
         <View
           style={[styles.scrollViewInnerView, {marginBottom: tabBarHeight}]}>
           <View style={styles.ItemContainer}>
-            {/* <HeaderBar title="Cart" /> */}
-
             {FavoritesList.length === 0 ? (
               <EmptyListAnimation title={'No Favourites'} />
             ) : (
@@ -73,24 +74,5 @@ const FavoritesScreen = ({navigation}: any) => {
     </View>
   );
 };
-const styles = StyleSheet.create({
-  screenContainer: {
-    flex: 1,
-    backgroundColor: COLORS.primaryBlackHex,
-  },
-  scrollViewFlex: {
-    flexGrow: 1,
-  },
-  scrollViewInnerView: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  ItemContainer: {
-    flex: 1,
-  },
-  // listItemContainer: {
-  //   paddingHorizontal: SPACING.space_20,
-  //   gap: SPACING.space_20,
-  // },
-});
+
 export default FavoritesScreen;

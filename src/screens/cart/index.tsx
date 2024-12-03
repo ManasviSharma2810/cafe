@@ -2,22 +2,19 @@ import React from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   StatusBar,
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
 import {useStore} from '../../store/store';
-import {COLORS, FONTFAMILY, FONTSIZE, SPACING} from '../../theme/theme';
-import HeaderBar from '../../components/HeaderBar';
+import {COLORS, FONTSIZE} from '../../theme/theme';
 import EmptyListAnimation from '../../components/EmptyListAnimation';
 import PaymentFooter from '../../components/PaymentFooter';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import CartItems from '../../components/CartItems';
-import ClearOrderHistory from '../../components/ClearOrderHistory';
 import GradientBGIcon from '../../components/GradientBGIcon';
-
-const CartScreen = ({navigation, route}: any) => {
+import { styles } from './styles';
+const CartScreen = ({navigation}: any) => {
   const CartList = useStore((state: any) => state.CartList);
 
   const CartPrice = useStore((state: any) => state.CartPrice);
@@ -121,43 +118,4 @@ const CartScreen = ({navigation, route}: any) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  screenContainer: {
-    flex: 1,
-    backgroundColor: COLORS.primaryBlackHex,
-  },
-  scrollViewFlex: {
-    flexGrow: 1,
-  },
-  scrollViewInnerView: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  ItemContainer: {
-    flex: 1,
-  },
-  headerContainer: {
-    paddingHorizontal: SPACING.space_24,
-    paddingVertical: SPACING.space_32,
-
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  headerText: {
-    fontFamily: FONTFAMILY.poppins_semibold,
-    fontSize: FONTSIZE.size_20,
-    color: COLORS.primaryWhiteHex,
-    marginTop: 20,
-  },
-  emptyView: {
-    height: SPACING.space_36,
-    width: SPACING.space_36,
-  },
-  arrowStyle: {
-    marginTop: 25,
-  },
-});
-
 export default CartScreen;

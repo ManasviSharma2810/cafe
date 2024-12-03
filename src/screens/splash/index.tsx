@@ -8,26 +8,29 @@ import {styles} from './styles';
 
 import LottieView from 'lottie-react-native';
 import splashImage from '../../lottie/splash.json';
+import { COLORS } from '../../theme/theme';
 
 const Splash = ({navigation}: any) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace('SignUp');
+      navigation.replace('Tutorial');
     }, 2000);
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
+    <LinearGradient start={{x: 0, y: 0}}
+    end={{x: 1, y: 1}}
+    colors={[COLORS.primaryOrangeHex, COLORS.primaryBlackHex]} style={styles.container}>
       <View style={styles.content}>
         <LottieView
           source={splashImage}
-          style={{width: 300, height: 200, alignSelf: 'center'}}
+          style={{width: 400, height: 300, alignSelf: 'center'}}
           autoPlay
           loop
           resizeMode="contain"
         />
       </View>
-    </View>
+    </LinearGradient>
   );
 };
 
