@@ -66,20 +66,20 @@ const styles = StyleSheet.create({
   paymentCardContainer: {
     borderRadius: BORDERRADIUS.radius_15 * 2,
     backgroundColor: COLORS.primaryGreyHex,
-    borderWidth: 3,
+    borderWidth: 2,
   },
   LinearGradientWallet: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: SPACING.space_24,
-    borderRadius: 21,
+    borderRadius: 25,
   },
   walletRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: SPACING.space_24,
-    padding: 12,
+    gap: 30,
+    padding: 11,
   },
   paymentTitle: {
     color: COLORS.primaryWhiteHex,
@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     color: COLORS.primaryWhiteHex,
     fontSize: FONTSIZE.size_16,
     fontFamily: FONTFAMILY.poppins_semibold,
+    margin:10
   },
   paymentImage: {
     height: 50,

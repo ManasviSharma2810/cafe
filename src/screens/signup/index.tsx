@@ -3,26 +3,24 @@ import {
   View,
   Text,
   TextInput,
-  StyleSheet,
   TouchableOpacity,
   Alert,
 } from 'react-native';
 import {
-  BORDERRADIUS,
   COLORS,
-  FONTFAMILY,
-  FONTSIZE,
-  SPACING,
 } from '../../theme/theme';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './styles';
+import { setLogin } from '../../redux_store/appSlice';
+import { useDispatch } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 
 const SignUP = ({navigation}: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(true);
-
+  const dispatch = useDispatch();
   const handleLogin = async () => {
     try {
       const userCredential = await auth().signInWithEmailAndPassword(
@@ -31,6 +29,8 @@ const SignUP = ({navigation}: any) => {
       );
       const user = userCredential.user;
       console.log('Logged in user:', user);
+
+      dispatch(setLogin());
       navigation.replace('TabNavigator');
     } catch (error) {
       console.error('Login error:', error);
@@ -53,8 +53,9 @@ const SignUP = ({navigation}: any) => {
         errorMessage = 'Incorrect password. Please try again.';
       }
       Alert.alert('Login Error', errorMessage);
-    }
+    } 
   };
+
 
   const isButtonDisabled = !email.trim() || !password.trim();
 
@@ -63,7 +64,11 @@ const SignUP = ({navigation}: any) => {
   };
 
   return (
-    <View style={styles.container}>
+    <LinearGradient 
+    start={{x: 1, y: 1}}
+      end={{x: 0, y: 1}} style={styles.container}
+      colors={[COLORS.primaryBlackHex,COLORS.primaryGreyHex]}
+      >
       <View style={styles.header}>
         <Text style={styles.title}>Welcome {'\n'} Back!</Text>
       </View>
@@ -121,12 +126,7 @@ const SignUP = ({navigation}: any) => {
         }}>
         <Text style={styles.forgotText}>Forgot your password?</Text>
       </TouchableOpacity>
-    </View>
+    </LinearGradient>
   );
 };
-
-
- 
-
-
 export default SignUP;

@@ -3,6 +3,8 @@ import { View, TextInput, Text, TouchableOpacity, Alert, Image } from 'react-nat
 import auth from '@react-native-firebase/auth';
 import { images } from '../../assets/images';
 import { styles } from './styles';
+import LinearGradient from 'react-native-linear-gradient';
+import { COLORS } from '../../theme/theme';
 
 const ForgotPassword = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
@@ -21,7 +23,11 @@ const ForgotPassword = ({ navigation }: any) => {
   };
   const isButtonDisabled = !email.trim();
   return (
-    <View style={styles.overlay}>
+    <LinearGradient
+    start={{x: 1, y: 1}}
+      end={{x: 0, y: 1}} style={styles.container}
+      colors={[COLORS.primaryBlackHex,COLORS.primaryGreyHex]}
+      >
       <TouchableOpacity
         style={styles.backArrowContainer}
         onPress={() => navigation.goBack()}
@@ -42,7 +48,7 @@ const ForgotPassword = ({ navigation }: any) => {
       >
         <Text style={styles.resetButtonText}>Send Reset Link</Text>
       </TouchableOpacity>
-    </View>
+    </LinearGradient>
   );
 };
 

@@ -5,6 +5,7 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import auth from '@react-native-firebase/auth';
@@ -14,6 +15,7 @@ import {
 } from '../../theme/theme';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './styles';
+import { images } from '../../assets/images';
 const CreateAccount = ({navigation}: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -52,10 +54,19 @@ const CreateAccount = ({navigation}: any) => {
   };
 
   return (
-    <LinearGradient
-      colors={[COLORS.primaryBlackHex, COLORS.primaryBlackHex]}
-      style={styles.container}>
+    <LinearGradient 
+    start={{x: 1, y: 1}}
+      end={{x: 0, y: 1}} style={styles.container}
+      colors={[COLORS.primaryBlackHex,COLORS.primaryGreyHex]}
+      >
+        <TouchableOpacity
+        style={styles.backArrowContainer}
+        onPress={() => navigation.goBack()}
+      >
+      <Image source={images.backArrow} style={styles.backArrow} />
+      </TouchableOpacity>
       <View style={styles.header}>
+      
         <Text style={styles.title}>Create{'\n'}Account</Text>
       </View>
 

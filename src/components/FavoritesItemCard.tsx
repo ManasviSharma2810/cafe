@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   containerLG: {
     gap: SPACING.space_10,
     // padding:SPACING.space_20,
-    marginBottom:20
+    marginBottom:30
   },
   descriptionTitle: {
     fontFamily: FONTFAMILY.poppins_semibold,
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     borderRadius: BORDERRADIUS.radius_25,
     overflow: 'hidden',
-    marginHorizontal:10
+    marginHorizontal:20
   },
 });
 export default FavoritesItemCard;

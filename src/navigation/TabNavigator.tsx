@@ -9,6 +9,8 @@ import CartScreen from '../screens/cart';
 import {COLORS} from '../theme/theme';
 import {BlurView} from '@react-native-community/blur';
 import CustomIcon from '../components/CustomIcon';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import ProfileScreen from '../screens/profile';
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
   return (
@@ -30,7 +32,7 @@ const TabNavigator = () => {
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({focused, color, size}) => (
+          tabBarIcon: ({focused}) => (
             <CustomIcon
               name="home"
               size={25}
@@ -70,15 +72,29 @@ const TabNavigator = () => {
         component={OrderHistoryScreen}
         options={{
           tabBarIcon: ({focused, color, size}) => (
-            <CustomIcon
-              name="bell"
-              size={25}
+            <Icon
+              name="history"
+              size={30}
+              color={focused ? COLORS.primaryOrangeHex : COLORS.bottomIconColor}
+            />
+          ),
+        }}
+      />
+       <Tab.Screen
+        name="ProfileScreen"
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({focused, color, size}) => (
+            <Icon
+              name="account-circle"
+              size={30}
               color={focused ? COLORS.primaryOrangeHex : COLORS.bottomIconColor}
             />
           ),
         }}
       />
     </Tab.Navigator>
+    
   );
 };
 const styles = StyleSheet.create({

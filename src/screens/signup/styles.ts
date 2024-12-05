@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
       title: {
         color: COLORS.primaryOrangeHex,
         fontSize: 40,
-        fontFamily: FONTFAMILY.poppins_semibold,
+        fontFamily: FONTFAMILY.poppins_light,
       },
       inputContainer: {
         backgroundColor: COLORS.primaryBlackHex,
@@ -64,5 +64,10 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         right: 0,
         padding: 12,
+      },
+      loadingIndicator: {
+        marginTop: 20,
+        zIndex: 10,
+
       },
 })

@@ -15,6 +15,7 @@ import ImageBGComponent from '../../components/ImageBGComponent';
 import {TouchableOpacity} from 'react-native';
 import PaymentFooter from '../../components/PaymentFooter';
 import { styles } from './styles';
+import CustomPopupModal from '../../components/CustomPopupModal';
 const DetailScreen = ({navigation, route}: any) => {
   console.log('route :', route);
   const ItemOfIndex = useStore((state: any) =>
@@ -29,6 +30,8 @@ const DetailScreen = ({navigation, route}: any) => {
   const  calculateCartPrice = useStore((state: any) => state.calculateCartPrice);
   const [fullDesc, setFullDesc] = useState(false);
   const [price, setPrice] = useState(ItemOfIndex.prices[0]);
+  const [modalVisible, setModalVisible] = useState(false); 
+  const [modalMessage, setModalMessage] = useState(''); 
   const addToCartHandler = ({
     id,
     index,
@@ -52,10 +55,22 @@ const DetailScreen = ({navigation, route}: any) => {
   calculateCartPrice();
   navigation.navigate("Cart");
   };
+  
   const ToggleFavorite = (favourite: boolean, type: string, id: string) => {
-    favourite ? deleteFromFavorite(type, id) : addToFavoriteList(type, id);
+    if (favourite) {
+      deleteFromFavorite(type, id);
+      setModalMessage('Removed from Favorites');
+    } else {
+      addToFavoriteList(type, id);
+      setModalMessage('Added to Favorites');
+    }
+    setModalVisible(true);
+    setTimeout(() => {
+      setModalVisible(false);
+    }, 1000);
   };
 
+ 
   return (
     <View style={styles.screenContainer}>
       <StatusBar backgroundColor={COLORS.primaryBlackHex} />
@@ -150,6 +165,10 @@ const DetailScreen = ({navigation, route}: any) => {
           }}
         />
       </ScrollView>
+      <CustomPopupModal
+        visible={modalVisible}
+        message={modalMessage}
+      />
     </View>
   );
 };

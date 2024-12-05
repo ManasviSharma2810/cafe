@@ -46,7 +46,6 @@ const HomeScreen = ({navigation}: any) => {
   const CoffeeList = useStore((state: any) => state.CoffeeList);
   console.log(CoffeeList);
   const BeanList = useStore((state: any) => state.BeanList);
-   console.log(BeanList,'+++++++++++++');
   const [categories, setCategories] = useState(
     getCategoriesFromData(CoffeeList),
   );
@@ -141,7 +140,6 @@ const HomeScreen = ({navigation}: any) => {
             }}
             placeholderTextColor={COLORS.primaryLightGreyHex}
             style={styles.textInputContainer}
-            // maxLength={20}
           />
           {searchText.length > 0 ? (
             <View style={styles.inputIconClose}>
@@ -198,7 +196,6 @@ const HomeScreen = ({navigation}: any) => {
             </View>
           ))}
         </ScrollView>
-        {/* <Text style={styles.coffeeBeanText}>Coffee Lists</Text> */}
         <FlatList
           ref={ListRef}
           horizontal

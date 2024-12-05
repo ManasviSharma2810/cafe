@@ -1,24 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   StatusBar,
   ScrollView,
   TouchableOpacity,
+  Text,
 } from 'react-native';
 import {useStore} from '../../store/store';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
-import {COLORS} from '../../theme/theme';
+import {COLORS, FONTSIZE} from '../../theme/theme';
 import HeaderBar from '../../components/HeaderBar';
 import EmptyListAnimation from '../../components/EmptyListAnimation';
 import FavoritesItemCard from '../../components/FavoritesItemCard';
 import { styles } from './styles';
+import GradientBGIcon from '../../components/GradientBGIcon';
+import CustomPopupModal from '../../components/CustomPopupModal';
 const FavoritesScreen = ({navigation}: any) => {
   const FavoritesList = useStore((state: any) => state.FavoritesList);
   // const tabBarHeight = useBottomTabBarHeight();
   const addToFavoriteList = useStore((state: any) => state.addToFavoriteList);
   const deleteFromFavorite = useStore((state: any) => state.deleteFromFavorite);
+  const [modalVisible, setModalVisible] = useState(false); 
+  const [modalMessage, setModalMessage] = useState(''); 
   const ToggleFavorite = (favourite: boolean, type: string, id: string) => {
-    favourite ? deleteFromFavorite(type, id) : addToFavoriteList(type, id);
+    if (favourite) {
+      deleteFromFavorite(type, id);
+      setModalMessage('Removed from Favorites');
+    } else {
+      addToFavoriteList(type, id);
+      setModalMessage('Added to Favorites');
+    }
+    setModalVisible(true);
+    setTimeout(() => {
+      setModalVisible(false);
+    }, 1000);
   };
   let tabBarHeight = 0; 
   try {
@@ -28,8 +43,22 @@ const FavoritesScreen = ({navigation}: any) => {
   }
   return (
     <View style={styles.screenContainer}>
+      <View style={styles.headerContainer}>
       <StatusBar backgroundColor={COLORS.primaryBlackHex} />
-      <HeaderBar title="Favourites" />
+      <TouchableOpacity
+          style={styles.arrowStyle}
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <GradientBGIcon
+            name="left"
+            color={COLORS.primaryLightGreyHex}
+            size={FONTSIZE.size_16}
+          />
+        </TouchableOpacity>
+        <Text style={styles.headerText}>Favourites</Text>
+        <View style={styles.emptyView} />
+        </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollViewFlex}>
@@ -71,8 +100,14 @@ const FavoritesScreen = ({navigation}: any) => {
           </View>
         </View>
       </ScrollView>
+      <CustomPopupModal
+        visible={modalVisible}
+        message={modalMessage}
+      />
     </View>
   );
 };
 
 export default FavoritesScreen;
+
+

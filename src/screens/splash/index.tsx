@@ -9,13 +9,22 @@ import {styles} from './styles';
 import LottieView from 'lottie-react-native';
 import splashImage from '../../lottie/splash.json';
 import { COLORS } from '../../theme/theme';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux_store/redux_store';
 
 const Splash = ({navigation}: any) => {
+  const { hasSeenTutorial, isLoggedIn } = useSelector((state: RootState) => state.app);
   useEffect(() => {
-    setTimeout(() => {
-      navigation.replace('Tutorial');
-    }, 2000);
-  }, [navigation]);
+    const navigateToNextScreen = setTimeout(() => {
+      if (!hasSeenTutorial) {
+        navigation.replace('Tutorial'); 
+      } else if (!isLoggedIn) {
+        navigation.replace('SignUp'); 
+      } else {
+        navigation.replace('HomeTab'); 
+      }
+    }, 2000); 
+  }, [hasSeenTutorial, isLoggedIn, navigation]);
 
   return (
     <LinearGradient start={{x: 0, y: 0}}

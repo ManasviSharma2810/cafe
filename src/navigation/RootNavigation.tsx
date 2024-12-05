@@ -16,6 +16,7 @@ import ForgotPassword from '../screens/forgot';
 import TutorialScreen from '../screens/tutorial';
 import Profile from '../screens/profile';
 import FavoritesScreen from '../screens/favorites';
+import PaymentMethod from '../screens/paymentMethod';
 const Stack = createNativeStackNavigator();
 const RootNavigation = () => {
   return (
@@ -58,7 +59,7 @@ const RootNavigation = () => {
           options={{animation: 'slide_from_bottom'}}
         />
          <Stack.Screen
-          name="Home"
+          name="HomeTab"
           component={TabNavigator}
           options={{animation: 'slide_from_bottom'}}
         />

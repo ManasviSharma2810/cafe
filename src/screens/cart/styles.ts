@@ -19,7 +19,6 @@ export const styles = StyleSheet.create({
       headerContainer: {
         paddingHorizontal: SPACING.space_24,
         paddingVertical: SPACING.space_32,
-    
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',

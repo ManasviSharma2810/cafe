@@ -32,9 +32,6 @@ const CartScreen = ({navigation}: any) => {
   } catch {
     console.warn('Screen is not inside a BottomTabNavigator.');
   }
-
-  // console.log('CartList:', CartList.length);
-  // console.log('CartPrice:', CartPrice);
   const buttonPressHandler = () => {
     navigation.navigate('PaymentScreen');
   };
@@ -65,7 +62,6 @@ const CartScreen = ({navigation}: any) => {
         <Text style={styles.headerText}>Cart</Text>
         <View style={styles.emptyView} />
       </View>
-      {/* <ClearOrderHistory/> */}
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollViewFlex}>

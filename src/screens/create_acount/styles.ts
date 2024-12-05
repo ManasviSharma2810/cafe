@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
       title: {
         color: COLORS.primaryOrangeHex,
         fontSize: 40,
-        fontFamily: FONTFAMILY.poppins_semibold,
+        fontFamily: FONTFAMILY.poppins_light,
       },
       inputContainer: {
         backgroundColor: COLORS.primaryBlackHex,
@@ -55,8 +55,8 @@ export const styles = StyleSheet.create({
       },
       createStyle: {
         margin: 18,
-        borderColor: COLORS.primaryBlackHex,
-        borderWidth: 1,
+        // borderColor: COLORS.primaryOrangeHex,
+        // borderWidth: 1,
         borderRadius: BORDERRADIUS.radius_15 * 2,
         padding: 10,
       },
@@ -69,5 +69,19 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         right: 0,
         padding: 12,
+      },
+      backArrowContainer: {
+        position: 'absolute',
+        top: 80,
+        left: 20, 
+        borderWidth:2,
+        borderColor:COLORS.primaryOrangeHex,
+        borderRadius:10,
+        padding:1
+      },
+      backArrow: {
+        width: 30,
+        height: 30, 
+        tintColor: COLORS.primaryOrangeHex, 
       },
 })

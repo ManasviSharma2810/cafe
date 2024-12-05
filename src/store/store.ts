@@ -18,34 +18,31 @@ export const useStore = create(
         set(
           produce(state => {
             let found = false;
-
             for (let i = 0; i < state.CartList.length; i++) {
               if (state.CartList[i].id === cartItem.id) {
-                // Corrected: === for equality check
+               
                 found = true;
-                let sizeFound = false; // Corrected: renamed variable to be more descriptive
+                let sizeFound = false;
                 for (let j = 0; j < state.CartList[i].prices.length; j++) {
                   if (
                     state.CartList[i].prices[j].size === cartItem.prices[0].size
                   ) {
-                    // Corrected: === for equality check
+                   
                     sizeFound = true;
                     state.CartList[i].prices[j].quantity++;
                     break;
                   }
                 }
                 if (!sizeFound) {
-                  // Corrected: changed to negation for clarity
                   state.CartList[i].prices.push(cartItem.prices[0]);
                 }
                 state.CartList[i].prices.sort((a: any, b: any) =>
                   a.size > b.size ? -1 : 1,
-                ); // Corrected: sorting order to properly sort sizes
+                ); 
                 break;
               }
             }
             if (!found) {
-              // Corrected: changed to negation for clarity
               state.CartList.push(cartItem);
             }
           }),
@@ -60,10 +57,10 @@ export const useStore = create(
                 tempPrice +=
                   parseFloat(state.CartList[i].prices[j].price) *
                   state.CartList[i].prices[j].quantity;
-                // Corrected: Changed from `=` to `+=` to accumulate `tempPrice`
+  
               }
               state.CartList[i].itemPrice = tempPrice.toFixed(2).toString();
-              totalPrice += tempPrice; // Corrected: Fixed `totalPrice` calculation
+              totalPrice += tempPrice; 
             }
             state.CartPrice = totalPrice.toFixed(2).toString();
           }),
@@ -71,17 +68,16 @@ export const useStore = create(
       addToFavoriteList: (type: string, id: string) =>
         set(
           produce(state => {
-            const list = type === 'Coffee' ? state.CoffeeList : state.BeanList; // Corrected: fixed typo BeanListList to BeanList
+            const list = type === 'Coffee' ? state.CoffeeList : state.BeanList; 
             for (let i = 0; i < list.length; i++) {
               if (list[i].id === id) {
-                // Corrected: === for equality check
                 list[i].favourite = !list[i].favourite;
                 if (list[i].favourite) {
-                  state.FavoritesList.unshift(list[i]); // Corrected: directly adds to FavoritesList
+                  state.FavoritesList.unshift(list[i]); 
                 } else {
                   state.FavoritesList = state.FavoritesList.filter(
                     (item: any) => item.id !== id,
-                  ); // Corrected: removes item if not favorite
+                  );
                 }
                 break;
               }
@@ -100,7 +96,7 @@ export const useStore = create(
             }
             state.FavoritesList = state.FavoritesList.filter(
               (item: any) => item.id !== id,
-            ); // Corrected: Filter out the unfavorited item
+            );
           }),
         ),
       incrementCartItemQuantity: (id: string, size: string) =>

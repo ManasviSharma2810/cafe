@@ -8,6 +8,8 @@ import {
 
 import {images} from '../../assets/images';
 import {styles} from './styles';
+import { useDispatch } from 'react-redux';
+import { setHasSeenTutorial } from '../../redux_store/appSlice'
 
 const tutorialSteps = [
   {
@@ -38,11 +40,14 @@ const TutorialScreen = ({navigation}: any) => {
     if (currentStep < tutorialSteps.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
+      
+      dispatch(setHasSeenTutorial());
       navigation.replace('SignUp');
     }
   };
-
+  const dispatch = useDispatch();
   const renderDots = () => {
+
     return (
       <View style={styles.dotContainer}>
         {tutorialSteps.map((_, index) => (
