@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { BORDERRADIUS, COLORS, FONTFAMILY, FONTSIZE, SPACING } from "../../theme/theme";
-
+import { responsiveHeight,responsiveWidth } from 'react-native-responsive-dimensions';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
         marginBottom: SPACING.space_20,
       },
       title: {
+        marginTop:responsiveHeight(12),
         color: COLORS.primaryOrangeHex,
         fontSize: 40,
         fontFamily: FONTFAMILY.poppins_light,
@@ -55,14 +56,12 @@ export const styles = StyleSheet.create({
       },
       createStyle: {
         margin: 18,
-        // borderColor: COLORS.primaryOrangeHex,
-        // borderWidth: 1,
         borderRadius: BORDERRADIUS.radius_15 * 2,
         padding: 10,
       },
       errorText: {
         color: 'red',
-        textAlign: 'center',
+        left:20,
         marginBottom: SPACING.space_10,
       },
       toggleEye: {
@@ -74,10 +73,6 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         top: 80,
         left: 20, 
-        borderWidth:2,
-        borderColor:COLORS.primaryOrangeHex,
-        borderRadius:10,
-        padding:1
       },
       backArrow: {
         width: 30,

@@ -12,9 +12,6 @@ export const styles= StyleSheet.create({
         position: 'absolute',
         top: 90, 
         left: 40, 
-        borderWidth:2,
-        borderColor:COLORS.primaryOrangeHex,
-        borderRadius:10,
         padding:1
       },
       backArrow: {
@@ -58,4 +55,5 @@ export const styles= StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
       },
+      
 })

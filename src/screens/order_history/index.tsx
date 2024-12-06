@@ -57,7 +57,7 @@ const OrderHistoryScreen = ({navigation}:any) => {
           <TouchableOpacity
               style={styles.DownloadButton}
               onPress={() => {
-               navigation.navigate('Home')
+               navigation.navigate('HomeTab')
               }}>
               <Text style={styles.ButtonText}>Back to Home</Text>
             </TouchableOpacity>

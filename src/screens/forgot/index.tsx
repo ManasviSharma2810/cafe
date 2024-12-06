@@ -53,5 +53,3 @@ const ForgotPassword = ({ navigation }: any) => {
 };
 
 export default ForgotPassword;
-
-

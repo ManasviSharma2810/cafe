@@ -5,23 +5,24 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  FlatList,
+  ScrollView,
 } from 'react-native';
 import {images} from '../../assets/images';
 import {COLORS, FONTFAMILY, FONTSIZE, SPACING} from '../../theme/theme';
 import GradientBGIcon from '../../components/GradientBGIcon';
-import auth from '@react-native-firebase/auth';  
-import { setLogout } from '../../redux_store/appSlice';
-import { useDispatch } from 'react-redux';
-import {styles} from '../profile/styles'
+import auth from '@react-native-firebase/auth';
+import {setLogout} from '../../redux_store/appSlice';
+import {useDispatch} from 'react-redux';
+import { styles } from './styles';
+
 
 const ProfileScreen = ({navigation}: any) => {
-  const [email, setEmail] = useState<string>(''); 
+  const [email, setEmail] = useState<string>('');
 
   useEffect(() => {
     const user = auth().currentUser;
     if (user) {
-      setEmail(user.email || ''); 
+      setEmail(user.email || '');
     }
   }, []);
 
@@ -40,14 +41,11 @@ const ProfileScreen = ({navigation}: any) => {
     },
   ];
 
-  const renderCard = ({item}: any) => (
-    <TouchableOpacity style={styles.card} onPress={item.onPress}>
-      <Text style={styles.cardText}>{item.text}</Text>
-    </TouchableOpacity>
-  );
   const dispatch = useDispatch();
+
   return (
     <View style={styles.container}>
+      {/* Header */}
       <View style={styles.headerContainer}>
         <TouchableOpacity
           style={styles.arrowStyle}
@@ -63,39 +61,35 @@ const ProfileScreen = ({navigation}: any) => {
         <Text style={styles.headerText}>Profile</Text>
         <View style={styles.emptyView} />
       </View>
-
-      <View style={styles.header}>
-        <Image source={images.profileImage} style={styles.profilePicture} />
-        <Text style={styles.username}>{email || 'User'}</Text>
-        <TouchableOpacity style={styles.editButton}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <View style={styles.header}>
+          <Image source={images.profileImage} style={styles.profilePicture} />
+          <Text style={styles.username}>{email || 'User'}</Text>
+        </View>
+        <View style={styles.section}>
+          {cardData.map(item => (
+            <TouchableOpacity
+              key={item.id}
+              style={styles.card}
+              onPress={item.onPress}>
+              <Text style={styles.cardText}>{item.text}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+        <View style={styles.rewards}>
+          <Text style={styles.rewardsText}>Rewards: 120 Points</Text>
+        </View>
+        <TouchableOpacity
+          style={styles.logoutButton}
+          onPress={() => {
+            dispatch(setLogout());
+            navigation.navigate('SignUp');
+          }}>
+          <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
-      </View>
-
-      <View style={styles.section}>
-        <FlatList
-          data={cardData}
-          renderItem={renderCard}
-          keyExtractor={item => item.id}
-          contentContainerStyle={{paddingBottom: 20}}
-        />
-      </View>
-
-      <View style={styles.rewards}>
-        <Text style={styles.rewardsText}>Rewards: 120 Points</Text>
-      </View>
-
-      <TouchableOpacity
-        style={styles.logoutButton}
-        onPress={() =>   {dispatch(setLogout())
-            navigation.navigate('SignUp')
-        }}
-        >
-        <Text style={styles.logoutText}>Logout</Text>
-      </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 };
-
-
 
 export default ProfileScreen;

@@ -83,6 +83,11 @@ const RootNavigation = () => {
           component={FavoritesScreen}
           options={{animation: 'slide_from_bottom'}}
         />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{animation: 'slide_from_bottom'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

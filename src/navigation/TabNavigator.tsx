@@ -11,6 +11,7 @@ import {BlurView} from '@react-native-community/blur';
 import CustomIcon from '../components/CustomIcon';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ProfileScreen from '../screens/profile';
+import { responsiveHeight } from 'react-native-responsive-dimensions';
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
   return (
@@ -29,7 +30,7 @@ const TabNavigator = () => {
         ),
       }}>
       <Tab.Screen
-        name="Home"
+        name="HomeTab"
         component={HomeScreen}
         options={{
           tabBarIcon: ({focused}) => (
@@ -99,7 +100,7 @@ const TabNavigator = () => {
 };
 const styles = StyleSheet.create({
   tabBarStyle: {
-    height: 80,
+    height: responsiveHeight(10),
     position: 'absolute',
     backgroundColor: COLORS.primaryBlackRGBA,
     borderTopWidth: 2,

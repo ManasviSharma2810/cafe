@@ -12,11 +12,11 @@ const PaymentScreen: React.FC = () => {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
-          clientSecret: 'dummyClientSecret123456', // Simulated client secret
-          amount: 2000, // Simulated amount in cents (e.g., $20)
+          clientSecret: 'dummyClientSecret123456', 
+          amount: 2000, 
           currency: 'usd',
         });
-      }, 1000); // Simulate a backend delay
+      }, 1000); 
     });
   };
 
@@ -27,9 +27,9 @@ const PaymentScreen: React.FC = () => {
     }
   
     try {
-      // Create a payment method using the card details
+  
       const { paymentMethod, error } = await createPaymentMethod({
-        type: 'Card', // Ensure this is set to 'Card'
+        type: 'Card'
         card: cardDetails,
       });
   
@@ -39,12 +39,12 @@ const PaymentScreen: React.FC = () => {
         return;
       }
   
-      // Simulate a backend call to get the PaymentIntent client secret
+      
       const paymentIntentData = await createPaymentIntent(paymentMethod.id);
   
-      // Confirm the payment using the client secret from the "backend"
+      
       const { error: confirmError } = await confirmPayment(paymentIntentData.clientSecret, {
-        type: 'Card', // Provide the correct payment method type
+        type: 'Card', 
         paymentMethodId: paymentMethod.id,
       });
   
@@ -65,9 +65,9 @@ const PaymentScreen: React.FC = () => {
       <Text style={{ fontSize: 18, marginBottom: 20 }}>Stripe Payment</Text>
 
       <CardField
-        postalCodeEnabled={true} // Enable postal code field
+        postalCodeEnabled={true} 
         placeholders={{
-          number: '4242 4242 4242 4242', // Test card number
+          number: '4242 4242 4242 4242', 
         }}
         cardStyle={{
           backgroundColor: '#FFFFFF',
@@ -81,7 +81,7 @@ const PaymentScreen: React.FC = () => {
           height: 50,
           marginVertical: 30,
         }}
-        onCardChange={(cardDetails) => setCardDetails(cardDetails)} // Update card details
+        onCardChange={(cardDetails) => setCardDetails(cardDetails)} 
       />
 
       <Button onPress={handlePayPress} title="Pay Now" />

@@ -10,34 +10,39 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import auth from '@react-native-firebase/auth';
 
-import {
-  COLORS,
-} from '../../theme/theme';
+import {COLORS} from '../../theme/theme';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { styles } from './styles';
-import { images } from '../../assets/images';
+import {styles} from './styles';
+import {images} from '../../assets/images';
 const CreateAccount = ({navigation}: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [showPassword, setShowPassword] = useState(true);
 
-  useEffect(() => {
-    validateFields();
-  }, [email, password]);
-
-  const validateFields = () => {
-    let emailValid = validateEmail(email);
-    let passwordValid = password.length >= 6;
-
-    setIsButtonDisabled(!(emailValid && passwordValid));
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   };
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+  const validatePassword = (password: string) => {
+    return password.length >= 6;
+  };
+
+  const handleEmailChange = (text: string) => {
+    setEmail(text);
+    const isEmailValid = validateEmail(text);
+    const isPasswordValid = validatePassword(password);
+    setIsButtonDisabled(!(isEmailValid && isPasswordValid));
+  };
+
+  const handlePasswordChange = (text: string) => {
+    setPassword(text);
+    const isEmailValid = validateEmail(email);
+    const isPasswordValid = validatePassword(text);
+    setIsButtonDisabled(!(isEmailValid && isPasswordValid));
   };
 
   const handleCreateAccount = async () => {
@@ -54,19 +59,18 @@ const CreateAccount = ({navigation}: any) => {
   };
 
   return (
-    <LinearGradient 
-    start={{x: 1, y: 1}}
-      end={{x: 0, y: 1}} style={styles.container}
-      colors={[COLORS.primaryBlackHex,COLORS.primaryGreyHex]}
-      >
-        <TouchableOpacity
+    <LinearGradient
+      start={{x: 1, y: 1}}
+      end={{x: 0, y: 1}}
+      style={styles.container}
+      colors={[COLORS.primaryBlackHex, COLORS.primaryGreyHex]}>
+      <TouchableOpacity
         style={styles.backArrowContainer}
-        onPress={() => navigation.goBack()}
-      >
-      <Image source={images.backArrow} style={styles.backArrow} />
+        onPress={() => navigation.goBack()}>
+        <Image source={images.backArrow} style={styles.backArrow} />
       </TouchableOpacity>
+
       <View style={styles.header}>
-      
         <Text style={styles.title}>Create{'\n'}Account</Text>
       </View>
 
@@ -83,12 +87,12 @@ const CreateAccount = ({navigation}: any) => {
           placeholderTextColor={COLORS.primaryWhiteHex}
           keyboardType="email-address"
           value={email}
-          onChangeText={text => setEmail(text)}
+          onChangeText={handleEmailChange}
         />
       </View>
-      {email !== '' && !validateEmail(email) ? (
+      {email !== '' && !validateEmail(email) && (
         <Text style={styles.errorText}>Invalid email format.</Text>
-      ) : null}
+      )}
 
       <View
         style={[
@@ -103,7 +107,7 @@ const CreateAccount = ({navigation}: any) => {
           placeholderTextColor={COLORS.primaryWhiteHex}
           secureTextEntry={showPassword}
           value={password}
-          onChangeText={text => setPassword(text)}
+          onChangeText={handlePasswordChange}
         />
         <TouchableOpacity style={styles.toggleEye} onPress={togglePassword}>
           {showPassword ? (
@@ -117,11 +121,12 @@ const CreateAccount = ({navigation}: any) => {
           )}
         </TouchableOpacity>
       </View>
-      {password !== '' && password.length < 6 ? (
+      {password !== '' && password.length < 6 && (
         <Text style={styles.errorText}>
           Password must be at least 6 characters.
         </Text>
-      ) : null}
+      )}
+
       <TouchableOpacity
         style={[styles.button, isButtonDisabled && {opacity: 0.6}]}
         onPress={handleCreateAccount}
@@ -137,6 +142,4 @@ const CreateAccount = ({navigation}: any) => {
     </LinearGradient>
   );
 };
-
-
 export default CreateAccount;

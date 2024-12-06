@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+
+import React, {useRef, useState} from 'react';
 import {
   View,
   Text,
   StatusBar,
   ScrollView,
   TouchableWithoutFeedback,
+  Animated,
 } from 'react-native';
 import {useStore} from '../../store/store';
 import {
@@ -32,6 +34,16 @@ const DetailScreen = ({navigation, route}: any) => {
   const [price, setPrice] = useState(ItemOfIndex.prices[0]);
   const [modalVisible, setModalVisible] = useState(false); 
   const [modalMessage, setModalMessage] = useState(''); 
+  const descriptionHeight = useRef(new Animated.Value(60)).current; 
+
+  const toggleDescription = () => {
+    setFullDesc((prev) => !prev);
+    Animated.timing(descriptionHeight, {
+      toValue: fullDesc ? 90 : 200,
+      duration: 250, 
+      useNativeDriver: false, 
+    }).start();
+  };
   const addToCartHandler = ({
     id,
     index,
@@ -94,23 +106,15 @@ const DetailScreen = ({navigation, route}: any) => {
         />
         <View style={styles.footerInfoArea}>
           <Text style={styles.descriptionText}>Description</Text>
-          {fullDesc ? (
-            <TouchableWithoutFeedback
-              onPress={() => {
-                setFullDesc(previous => !previous);
-              }}>
+          <TouchableWithoutFeedback onPress={toggleDescription}>
+            <Animated.View
+              style={[
+                styles.descContainer, 
+                { height: descriptionHeight },
+              ]}>
               <Text style={styles.descText}>{ItemOfIndex.description}</Text>
-            </TouchableWithoutFeedback>
-          ) : (
-            <TouchableWithoutFeedback
-              onPress={() => {
-                setFullDesc(previous => !previous);
-              }}>
-              <Text numberOfLines={3} style={styles.descText}>
-                {ItemOfIndex.description}
-              </Text>
-            </TouchableWithoutFeedback>
-          )}
+            </Animated.View>
+          </TouchableWithoutFeedback>
           <Text style={styles.descriptionText}>Size</Text>
           <View style={styles.sizeOuterContainer}>
             {ItemOfIndex.prices.map((data: any) => (

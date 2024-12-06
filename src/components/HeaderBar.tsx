@@ -4,6 +4,7 @@ import {COLORS, FONTFAMILY, FONTSIZE, SPACING} from '../theme/theme';
 import GradientBGIcon from './GradientBGIcon';
 import ProfilePic from './ProfilePic';
 import { useNavigation } from '@react-navigation/native';
+import { responsiveHeight } from 'react-native-responsive-dimensions';
 interface HeaderBarProps {
   title?: string;
 }
@@ -26,7 +27,7 @@ const HeaderBar: React.FC<HeaderBarProps> = ({title}) => {
 const styles = StyleSheet.create({
   headerContainer: {
     padding: SPACING.space_32,
-    marginTop:20,
+    marginTop:responsiveHeight(2),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

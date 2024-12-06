@@ -50,4 +50,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 2,
   },
+  descContainer: {
+    overflow: 'hidden', 
+    marginVertical: 10,     
+  },
 });

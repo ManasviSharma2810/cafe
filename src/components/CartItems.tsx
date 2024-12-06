@@ -16,6 +16,7 @@ import {
   SPACING,
 } from '../theme/theme';
 import CustomIcon from './CustomIcon';
+import { responsiveHeight,responsiveWidth } from 'react-native-responsive-dimensions';
 
 interface CartItemsProps {
   id: string;
@@ -39,7 +40,7 @@ const CartItems: React.FC<CartItemsProps> = ({
   incrementCartItemQuantityHandler,
   decrementCartItemQuantityHandler,
 }) => {
-  console.log(id, name, imagelink_square, special_ingredient, roasted, '>>>');
+  console.log(id, name, imagelink_square, special_ingredient, roasted);
 
   return (
     <View>
@@ -202,10 +203,10 @@ const styles = StyleSheet.create({
     gap: SPACING.space_12,
   },
   cartItemImage: {
-    height: 130,
-    width: 130,
-    borderRadius: BORDERRADIUS.radius_20,
-    resizeMode: 'contain',
+    height: responsiveHeight(15),
+    width: responsiveWidth(30),
+    borderRadius:15,
+    resizeMode: 'cover',
   },
   cartItemInfo: {
     flex: 1,
@@ -226,19 +227,21 @@ const styles = StyleSheet.create({
     fontFamily: FONTFAMILY.poppins_regular,
     fontSize: FONTSIZE.size_12,
     color: COLORS.primaryWhiteHex,
+    padding:8
   },
   cartItemRoastedContainer: {
-    height: 50,
-    width: 50 * 2 + SPACING.space_20,
-    borderRadius: BORDERRADIUS.radius_15,
+    // height: responsiveHeight(1),
+    // width: responsiveWidth(20),
+    marginBottom:responsiveHeight(1),
+    borderRadius: BORDERRADIUS.radius_10,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: COLORS.primaryGreyHex,
   },
   sizeBox: {
     backgroundColor: COLORS.primaryBlackHex,
-    height: 40,
-    width: 100,
+    height: responsiveHeight(5),
+    width: responsiveWidth(20),
     borderRadius: BORDERRADIUS.radius_10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -272,12 +275,12 @@ const styles = StyleSheet.create({
   },
   cartItemIcon: {
     backgroundColor: COLORS.primaryOrangeHex,
-    padding: SPACING.space_12,
+    padding: SPACING.space_10,
     borderRadius: BORDERRADIUS.radius_10,
   },
   cartItemQuantityContainer: {
     backgroundColor: COLORS.primaryBlackHex,
-    width: 80,
+    width: responsiveWidth(20),
     borderRadius: BORDERRADIUS.radius_10,
     borderWidth: 2,
     borderColor: COLORS.primaryOrangeHex,
@@ -298,8 +301,8 @@ const styles = StyleSheet.create({
     borderRadius: BORDERRADIUS.radius_25,
   },
   cartItemSingleImage: {
-    height: 150,
-    width: 150,
+    height: responsiveHeight(15),
+    width: responsiveWidth(34),
     borderRadius: BORDERRADIUS.radius_20,
   },
   cartItemSingleInfoContainer: {
@@ -311,7 +314,7 @@ const styles = StyleSheet.create({
   },
   cartContainerSingleSizeValue: {
     flexDirection: 'row',
-    // justifyContent: 'space-evenly',
+   
     alignItems: 'center',
   },
 });

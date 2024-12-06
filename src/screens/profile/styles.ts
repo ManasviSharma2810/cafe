@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { COLORS, FONTFAMILY, FONTSIZE, SPACING } from "../../theme/theme";
-
+import { responsiveHeight } from 'react-native-responsive-dimensions';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -25,23 +25,19 @@ export const styles = StyleSheet.create({
         marginTop: 10,
         fontWeight: 'bold',
       },
-      editButton: {
-        marginTop: 5,
-        padding: 5,
-      },
       editText: {
         color: COLORS.primaryOrangeHex,
         fontSize: 16,
       },
       section: {
-        marginTop: 20,
+        marginTop: responsiveHeight(2),
         paddingHorizontal: 20,
       },
       card: {
         backgroundColor: '#1c1c1e',
         padding: 15,
         borderRadius: 10,
-        marginBottom: 10,
+        marginBottom: responsiveHeight(1.5),
         flexDirection: 'row',
         alignItems: 'center',
       },
@@ -51,7 +47,7 @@ export const styles = StyleSheet.create({
         flex: 1,
       },
       rewards: {
-        marginTop: 20,
+        marginTop: responsiveHeight(2),
         paddingHorizontal: 20,
       },
       rewardsText: {
@@ -60,7 +56,7 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
       },
       logoutButton: {
-        marginTop: 30,
+        marginTop: responsiveHeight(4),
         padding: 15,
         backgroundColor: COLORS.primaryOrangeHex,
         borderRadius: 10,
@@ -76,19 +72,22 @@ export const styles = StyleSheet.create({
         fontFamily: FONTFAMILY.poppins_semibold,
         fontSize: FONTSIZE.size_20,
         color: COLORS.primaryWhiteHex,
-        marginTop: 20,
+        marginTop: responsiveHeight(3),
       },
       emptyView: {
         height: SPACING.space_36,
         width: SPACING.space_36,
       },
       arrowStyle: {
-        marginTop: 15,
+        marginTop: responsiveHeight(2),
       },
       headerContainer: {
         paddingHorizontal: SPACING.space_24,
         paddingVertical: SPACING.space_32,
         flexDirection: 'row',
         justifyContent: 'space-between',
+      },
+      scrollContent: {
+        paddingBottom: responsiveHeight(15), 
       },
 })

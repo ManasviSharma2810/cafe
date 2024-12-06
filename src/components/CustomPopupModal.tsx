@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, View, Text, StyleSheet, GestureResponderEvent } from 'react-native';
+import { Modal, View, Text, StyleSheet, } from 'react-native';
 
 interface CustomPopupModalProps {
   visible: boolean;
